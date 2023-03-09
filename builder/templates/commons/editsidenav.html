@@ -1,0 +1,45 @@
+{% load static %}
+<div id="myEditSidebar" class="sidebar" style="background-color:#72fa92;">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav('myEditSidebar')">×</a>
+    
+    <form>
+      <ul><li>
+      <label for="navbar-bg-color">Background Color:</label>
+      <input class="pos-from-left" type="color" id="navbar-bg-color" name="navbar-bg-color" value="#000000"><br><hr>
+      </li>
+      <li>
+      <label for="navbar-font-color">Font Color:</label>
+      <input class="pos-from-left" type="color" id="navbar-font-color" name="navbar-font-color" value="#ffffff"><br><hr>
+    </li>
+    <li>
+      <label for="navbar-font-size">Font Size:</label>
+      <input class="pos-from-left" type="number" id="navbar-font-size" name="navbar-font-size" min="8" max="48" value="16"><br><hr>
+    </li>
+    <li>
+      <label for="navbar-padding">Padding:</label>
+      <input class="pos-from-left" type="number" id="navbar-padding" name="navbar-padding" min="0" max="50" value="10"><br><hr>
+    </li>
+    <li>
+      <label for="navbar-border-style">Border Style:</label>
+      <select id="navbar-border-style" name="navbar-border-style">
+        <option value="none">None</option>
+        <option value="solid">Solid</option>
+        <option value="dotted">Dotted</option>
+        <option value="dashed">Dashed</option>
+      </select><br><hr>
+    </li>
+    <li>
+      <label for="navbar-border-width">Border Width:</label>
+      <input class="pos-from-left" type="number" id="navbar-border-width" name="navbar-border-width" min="0" max="10" value="1"><br><hr>
+    </li>
+    <li>
+      <label for="navbar-border-color">Border Color:</label>
+      <input class="pos-from-left" type="color" id="navbar-border-color" name="navbar-border-color" value="#ffffff"><br><hr>
+    </li>
+    <li>
+      <input class="pos-from-left" type="submit" value="set">
+    </li>
+    </form>
+    
+
+  </div>
