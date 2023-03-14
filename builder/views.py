@@ -10,6 +10,6 @@ def index(request):
 
 def page_creator(request):
     Func = open("mysite/templates/custom/header.html","w")
-    Func.write("<h1>Hello</h1>")
+    Func.write("<h1>Hello world sample</h1>")
     Func.close()
     return JsonResponse({'status' : 'Success'}, status=200, safe=False)   
