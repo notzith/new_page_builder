@@ -9,7 +9,7 @@ def index(request):
     return render(request, 'index.html')
 
 def page_creator(request):
-    Func = open("mysite/templates/header.html","w")
+    Func = open("mysite/templates/custom/header.html","w")
     Func.write("<h1>Hello</h1>")
     Func.close()
     return JsonResponse({'status' : 'Success'}, status=200, safe=False)   
