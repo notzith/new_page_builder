@@ -1,9 +1,9 @@
 {% load static %}
 <div id="myElementSidebar" class="sidebar">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav('myElementSidebar')">×</a>
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav('myElementSidebar')">&times;</a>
   <ul>
     <li>
-      <div id="left"><button onclick="myFunction()">
+      <div id="left"><button onclick="myFunction('head')">
           <div class="thumbnail">
             <img src="{% static 'img/hed.png' %}" alt="Fjords">
             <div class="caption">
@@ -13,7 +13,7 @@
         </button>
       </div>
 
-      <div id="right"><button onclick="header(1)">
+      <div id="right"><button onclick="myFunction('para')">
           <div class="thumbnail">
             <img src="{% static 'img/pincrow.png' %}" alt="Fjords">
             <div class="caption">
@@ -24,7 +24,7 @@
       </div>
     </li>
     <li>
-      <div id="left"><button onclick="header(1)">
+      <div id="left"><button onclick="myFunction('navbar')">
           <div class="thumbnail">
             <img src="{% static 'img/navbar.png' %}" alt="Fjords">
             <div class="caption">
@@ -34,7 +34,7 @@
         </button>
       </div>
 
-      <div id="right"><button onclick="header(1)">
+      <div id="right"><button onclick="myFunction('jumbotron')">
           <div class="thumbnail">
             <img src="{% static 'img/jumbotron.png' %}" alt="Fjords">
             <div class="caption">
@@ -45,7 +45,7 @@
       </div>
     </li>
     <li>
-      <div id="left"><button onclick="header(1)">
+      <div id="left"><button onclick="myFunction('image')">
           <div class="thumbnail">
             <img src="{% static 'img/imglogo.png' %}" alt="Fjords">
             <div class="caption">
@@ -55,7 +55,7 @@
         </button>
       </div>
 
-      <div id="right"><button onclick="header(1)">
+      <div id="right"><button onclick="myFunction('video')">
           <div class="thumbnail">
             <img src="{% static 'img/video.png' %}" alt="Fjords">
             <div class="caption">
@@ -68,7 +68,7 @@
 
     <li>
 
-      <div id="left"><button onclick="header(1)">
+      <div id="left"><button onclick="myFunction('link')">
           <div class="thumbnail">
             <img src="{% static 'img/hyperlink.png' %}" alt="Fjords">
             <div class="caption">
@@ -78,7 +78,7 @@
         </button>
       </div>
 
-      <div id="right"><button onclick="header(1)">
+      <div id="right"><button onclick="myFunction('head')">
           <div class="thumbnail">
             <img src="{% static 'img/pincrow.png' %}" alt="Fjords">
             <div class="caption">
@@ -90,3 +90,4 @@
     </li>
   </ul>
 </div>
+

@@ -1,7 +1,10 @@
-function myFunction() {
+function myFunction(type) {
+    console.log(type); 
+    url = '/'+ type +'/'
     $.ajax({
         type: "GET",
-        url: "/creator/",
+        url: url,
+        
         success: function (data) {
             console.log(data);
         }
