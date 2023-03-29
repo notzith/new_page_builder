@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="add-paragraph-btn">Add Paragraph</button>
+    <button id="add-heading-btn">Add Heading</button>
+    <button id="remove-last-btn">Remove Last Element</button>
+    <button id="save-file-btn">Save File</button>
+    <div id="content-container" style="width: 30%; text-align: center; border:solid rebeccapurple 10px;"></div>
+
+
+    <script>
+        const addParagraphBtn = document.getElementById('add-paragraph-btn');
+        const addHeadingBtn = document.getElementById('add-heading-btn');
+        const removeLastBtn = document.getElementById('remove-last-btn');
+        const saveFileBtn = document.getElementById('save-file-btn');
+        const contentContainer = document.getElementById('content-container');
+
+        addParagraphBtn.addEventListener('click', () => {
+            // Prompt the user for the text content of the new paragraph
+            const paragraphText = prompt('Enter the text for the new paragraph:', '');
+
+            // If the user entered text, create a new paragraph element with that text
+            if (paragraphText) {
+                const newParagraph = document.createElement('p');
+                newParagraph.textContent = paragraphText;
+
+                // Add the new paragraph to the container element
+                contentContainer.appendChild(newParagraph);
+            }
+        });
+
+        addHeadingBtn.addEventListener('click', () => {
+            // Prompt the user for the text content of the new heading
+            const headingText = prompt('Enter the text for the new heading:', '');
+
+            // If the user entered text, create a new heading element with that text
+            if (headingText) {
+                const newHeading = document.createElement('h1');
+                newHeading.textContent = headingText;
+
+                // Add the new heading to the container element
+                contentContainer.appendChild(newHeading);
+            }
+        });
+
+        removeLastBtn.addEventListener('click', () => {
+            // Get the last child element of the container
+            const lastChild = contentContainer.lastChild;
+
+            // If the last child exists, remove it
+            if (lastChild) {
+                contentContainer.removeChild(lastChild);
+            }
+        });
+
+        saveFileBtn.addEventListener('click', () => {
+            // Get the innerHTML of the container element
+            const containerHtml = contentContainer.innerHTML;
+
+            // Create a new blob object with the HTML content
+            const fileBlob = new Blob([containerHtml], { type: 'text/html' });
+
+            // Create a new download URL for the blob
+            const downloadUrl = URL.createObjectURL(fileBlob);
+
+            // Create a new anchor element and set its href and download attributes
+            const downloadLink = document.createElement('a');
+            downloadLink.href = downloadUrl;
+            downloadLink.download = 'content.html';
+
+            // Simulate a click on the anchor element to start the download
+            downloadLink.click();
+
+            // Release the URL object to free up memory
+            URL.revokeObjectURL(downloadUrl);
+        });
+
+    </script>
+
+
+
+</body>
+
+</html>
