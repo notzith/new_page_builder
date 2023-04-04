@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="innnercollect.js"></script>
+</head>
+
+<body>
+    <div class="container my-4">
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-primary" id="add-paragraph-btn">Add Paragraph</button>
+                <button class="btn btn-primary" id="add-heading-btn">Add Heading</button>
+                <button class="btn btn-danger" id="remove-last-btn">Remove Last Element</button>
+                <button class="btn btn-success" id="save-file-btn">Save File</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card my-4">
+                    <div class="card-body" id="content-container">
+                        <p class="card-text">Start by adding a paragraph or heading using the buttons above.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const addParagraphBtn = document.getElementById('add-paragraph-btn');
+        const addHeadingBtn = document.getElementById('add-heading-btn');
+        const removeLastBtn = document.getElementById('remove-last-btn');
+        const saveFileBtn = document.getElementById('save-file-btn');
+        const contentContainer = document.getElementById('content-container');
+
+        let elementCount = 0;
+
+        addParagraphBtn.addEventListener('click', () => {
+            // Prompt the user for the text content and ID of the new paragraph
+            const paragraphText = prompt('Enter the text for the new paragraph:', '');
+            const paragraphId = prompt('Enter the ID for the new paragraph:', '');
+
+            // If the user entered text and an ID, create a new paragraph element with that text and ID
+            if (paragraphText && paragraphId) {
+                const newParagraph = document.createElement('p');
+                newParagraph.classList.add('card-text');
+                newParagraph.textContent = paragraphText;
+                newParagraph.id = paragraphId;
+
+                // Add the new paragraph to the container element
+                contentContainer.appendChild(newParagraph);
+
+                // Increment the element count
+                elementCount++;
+            }
+        });
+
+        addHeadingBtn.addEventListener('click', () => {
+            // Prompt the user for the text content and ID of the new heading
+            const headingText = prompt('Enter the text for the new heading:', '');
+            const headingId = prompt('Enter the ID for the new heading:', '');
+
+            // If the user entered text and an ID, create a new heading element with that text and ID
+            if (headingText && headingId) {
+                const newHeading = document.createElement('h1');
+                newHeading.classList.add('card-title');
+                newHeading.textContent = headingText;
+                newHeading.id = headingId;
+
+                // Add the new heading to the container element
+                contentContainer.appendChild(newHeading);
+
+                // Increment the element count
+                elementCount++;
+            }
+        });
+
+        removeLastBtn.addEventListener('click', () => {
+            // Get the last child element of the container
+            const lastChild = contentContainer.lastChild;
+
+            // If the last child exists, remove it
+            if (lastChild) {
+                contentContainer.removeChild(lastChild);
+                elementCount--;
+            }
+        });
+
+        saveFileBtn.addEventListener('click', () => {
+            // Get the innerHTML of the container element
+            const containerHtml = contentContainer.innerHTML;
+
+            // Create a new blob object with the HTML content
+            const fileBlob = new Blob([containerHtml], { type: 'text/html' });
+
+            // Create a new download URL for the blob
+            const downloadUrl = URL.createObjectURL(fileBlob);
+
+            // Create a new anchor element and set its href and download attributes
+            const downloadLink = document;
+        });
+
+    </script>
+
+</body>
+
+</html>
