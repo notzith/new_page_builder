@@ -21,6 +21,39 @@ function addParagraph() {
         elementCount++;
     }
 }
+function addLine() {
+    const br = document.createElement('br');
+    myElement.parentNode.insertBefore(br, myElement.nextSibling);
+
+}
+
+function addImage() {
+    // Create a new input element of type file
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+  
+    // When the user selects a file, create a new img element with the file as the source and alt text
+    fileInput.onchange = function() {
+      const selectedFile = fileInput.files[0];
+      if (selectedFile) {
+        const newImage = document.createElement('img');
+        newImage.classList.add('card-img-top');
+        newImage.src = URL.createObjectURL(selectedFile);
+        const imgAlt = prompt('Enter the alt text for the image:', '');
+        newImage.alt = imgAlt;
+  
+        // Add the new image to the container element
+        contentContainer.appendChild(newImage);
+  
+        // Increment the element count
+        elementCount++;
+      }
+    };
+  
+    // Click the file input to trigger the file selection dialog
+    fileInput.click();
+  }
+  
 
 function addHeading() {
     // Prompt the user for the text content and ID of the new heading

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bold Selected Text</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <p id="paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae nulla eget justo ultrices
+            mattis. Sed id mauris sit amet mauris consequat venenatis in sed tellus. Etiam commodo justo non magna
+            euismod, sed interdum elit rutrum.</p>
+        <button id="boldButton">Bold Selected Text</button>
+    </div>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+        // Add event listener to the button
+        document.getElementById("boldButton").addEventListener("click", makeTextBold);
+
+        function makeTextBold() {
+            // Get the selected text
+            var selection = window.getSelection().toString();
+
+            if (selection !== '') {
+                // Get the paragraph element
+                var paragraph = document.getElementById("paragraph");
+
+                // Get the range of the selection
+                var range = window.getSelection().getRangeAt(0);
+
+                // Create a <strong> element
+                var strong = document.createElement("strong");
+                strong.appendChild(document.createTextNode(selection));
+
+                // Replace the selected text with the <strong> element
+                range.deleteContents();
+                range.insertNode(strong);
+
+                // Collapse the range to the end of the <strong> element
+                range.setEndAfter(strong);
+                range.setStartAfter(strong);
+
+                // Clear the selection
+                window.getSelection().removeAllRanges();
+                window.getSelection().addRange(range);
+            }
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,22 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <title>Bootstrap Example</title>
+    <title>Image Upload</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        /* Styling for the image and toolbar */
+        #image-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        #image-container img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .image-toolbar {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 5px;
+            color: #00f;
+            cursor: pointer;
+        }
+
+        .image-toolbar button {
+            background-color: transparent;
+            border: none;
+            color: #f60;
+            padding: 0 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        #image-container:hover .image-toolbar {
+            display: block;
+        }
+    </style>
 </head>
 
 <body>
 
+
+
     <div class="container">
-        <h2>Modal Example</h2>
+        <h2>image modal example</h2>
         <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" >Open
-            Modal</button>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModalhead">click</button>
 
         <!-- Modal -->
         <div class="modal fade" id="myModalhead" role="dialog">
@@ -26,20 +64,18 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Modal Header</h4>
+                        <h4 class="modal-title">upload an image </h4>
                     </div>
                     <div class="modal-body">
                         <p>
-                        <form>
-                            <label for="Hcontent">Header content:</label><br>
-                            <input type="text" id="Hcontent" name="heddingcontent"><br>
-                            <label for="Hid">Header id:</label><br>
-                            <input type="text" id="Hid" name="heddingid">
+                            <!-- Form for uploading an image -->
+                        <form enctype="multipart/form-data">
+                            <input type="file" name="image" id="image-input">
                         </form>
                         </p>
                     </div>
                     <div class="modal-footer">
-                        <input type="submit" value="Submit">
+                        <button type="button" id="upload-button" data-dismiss="modal">Upload Image</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
@@ -49,6 +85,81 @@
 
     </div>
 
+
+
+    <!-- Container for displaying the uploaded image -->
+    <div id="image-container">
+        <img id="uploaded-image">
+        <div class="image-toolbar">
+            <button id="delete-button">Delete</button>
+            <button id="justify-left-button">Justify Left</button>
+            <button id="justify-right-button">Justify Right</button>
+        </div>
+    </div>
+
+
+
+    <script>
+        // Get references to the relevant elements
+        const imageInput = document.getElementById('image-input');
+        const uploadButton = document.getElementById('upload-button');
+        const uploadedImage = document.getElementById('uploaded-image');
+        const deleteButton = document.getElementById('delete-button');
+        const justifyLeftButton = document.getElementById('justify-left-button');
+        const justifyRightButton = document.getElementById('justify-right-button');
+
+        // Function to handle uploading an image
+        function uploadImage() {
+            const file = imageInput.files[0];
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const img = document.createElement('img');
+                img.setAttribute('src', e.target.result);
+                img.setAttribute('id', 'uploaded-image');
+                img.setAttribute('alt', 'uploaded image');
+                document.getElementById('image-container').appendChild(img);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Function to handle deleting the uploaded image
+        function deleteImage() {
+            const uploadedImage = document.getElementById('uploaded-image');
+            const imageContainer = uploadedImage.parentNode;
+            imageContainer.removeChild(uploadedImage);
+        }
+
+
+        // Function to handle justifying the uploaded image to the left
+        function justifyLeft() {
+            // uploadedImage.style.float = 'left';
+            // uploadedImage.style.marginRight = '10px';
+            // uploadedImage.style.marginBottom = '10px';
+            // function shrink50() {
+
+            const uploadedImage = document.getElementById('uploaded-image');
+
+            const currentWidth = uploadedImage.width;
+            const currentHeight = uploadedImage.height;
+            uploadedImage.width = currentWidth * 0.5;
+            uploadedImage.height = currentHeight * 0.5;
+
+
+        }
+
+        // Function to handle justifying the uploaded image to the right
+        function justifyRight() {
+            uploadedImage.style.float = 'right';
+            uploadedImage.style.marginLeft = '10px';
+            uploadedImage.style.marginBottom = '10px';
+        }
+
+        // Event listeners for the buttons
+        uploadButton.addEventListener('click', uploadImage);
+        deleteButton.addEventListener('click', deleteImage);
+        justifyLeftButton.addEventListener('click', justifyLeft);
+        justifyRightButton.addEventListener('click', justifyRight);
+    </script>
 </body>
 
 </html>
